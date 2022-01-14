@@ -21,9 +21,14 @@ namespace MediaPlayer.MediaPlayerWindows
         private mediaFileController musicFileController;
 
         /// <summary>
-        /// メディア名、メディアパス
+        /// 連番、メディアパス
         /// </summary>
-        private Dictionary<string, string> files = new Dictionary<string, string>();
+        private Dictionary<int, string> files = new Dictionary<int, string>();
+
+        /// <summary>
+        /// メディア名
+        /// </summary>
+        private List<string> mediaFileName = new List<string>();
 
         /// <summary>
         /// コンストラクタ
@@ -37,6 +42,30 @@ namespace MediaPlayer.MediaPlayerWindows
 
             ///ファイルパスの取得をする
             files = musicFileController.getMusicFilePathes();
+            extractMediaFileName();
+
+            ///データグリッドに追加する
+            displayFileNameOnDataGrid();
+        }
+
+        /// <summary>
+        /// ファイル名取得関数
+        /// </summary>
+        private void extractMediaFileName()
+        {
+            string eachFileName = string.Empty;
+            int i = 0;
+
+            ///ファイル名を取得する
+            foreach (KeyValuePair<int, string> keyValue in files)
+            {
+                i++;
+
+                string[] str = keyValue.Value.Split('\\');
+                eachFileName = str[str.Length - 1];
+
+                mediaFileName.Add(eachFileName);
+            }
         }
 
         /// <summary>
@@ -44,6 +73,11 @@ namespace MediaPlayer.MediaPlayerWindows
         /// </summary>
         private void displayFileNameOnDataGrid()
         {
+            ///データグリッドに名前の追加をする
+            foreach(string str in mediaFileName)
+            {
+                MediaPlayer.mediaPlayer.fileNameDisplayDataGrid.Rows.Add(str);
+            }
         }
 
         /// <summary>

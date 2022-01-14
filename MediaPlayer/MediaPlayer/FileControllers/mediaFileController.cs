@@ -10,14 +10,14 @@ namespace MediaPlayer.FileControllers
     class mediaFileController
     {
         /// <summary>
-        /// 
+        /// getter用のファイル一覧
         /// </summary>
-        private Dictionary<string, string> files = new Dictionary<string, string>();
+        private Dictionary<int, string> files = new Dictionary<int, string>();
 
         /// <summary>
-        /// 
+        /// ファイル一覧の保持変数
         /// </summary>
-        private Dictionary<string, string> fileNames = new Dictionary<string, string>();
+        private Dictionary<int, string> fileNames = new Dictionary<int, string>();
 
         /// <summary>
         /// コンストラクタ
@@ -34,7 +34,7 @@ namespace MediaPlayer.FileControllers
         /// <remarks>
         /// 外部のクラスからメディアファイルを取得する関数
         /// </remarks>
-        public Dictionary<string, string> getMusicFilePathes()
+        public Dictionary<int, string> getMusicFilePathes()
         {
             return files;
         }
@@ -45,9 +45,9 @@ namespace MediaPlayer.FileControllers
         /// <remarks>
         /// メディアファイルを取得する関数
         /// </remarks>
-        private Dictionary<string,string> readFilePathes()
+        private Dictionary<int,string> readFilePathes()
         {
-            string eachFileName = string.Empty;
+            int fileNum = 0;
 
             ///相対パスの取得をする
             string relativePathName = System.IO.Path.GetFullPath("..\\..\\Media\\music");
@@ -58,10 +58,9 @@ namespace MediaPlayer.FileControllers
             ///個々のファイル名を取得する
             foreach (string str in files)
             {
-                string[] test = str.Split('\\');
-                eachFileName = test[test.Length - 1];
+                fileNum++;
 
-                fileNames.Add(eachFileName, str);
+                fileNames.Add(fileNum, str);
             }
 
             return fileNames;

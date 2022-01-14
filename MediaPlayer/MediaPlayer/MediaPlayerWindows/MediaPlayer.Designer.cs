@@ -47,6 +47,7 @@ namespace MediaPlayer
             this.fileName});
             this.FileNameDisplayDataGrid.Location = new System.Drawing.Point(12, 68);
             this.FileNameDisplayDataGrid.Name = "FileNameDisplayDataGrid";
+            this.FileNameDisplayDataGrid.ReadOnly = true;
             this.FileNameDisplayDataGrid.RowHeadersVisible = false;
             this.FileNameDisplayDataGrid.RowTemplate.Height = 21;
             this.FileNameDisplayDataGrid.Size = new System.Drawing.Size(360, 247);
@@ -56,6 +57,7 @@ namespace MediaPlayer
             // 
             this.fileName.HeaderText = "名前";
             this.fileName.Name = "fileName";
+            this.fileName.ReadOnly = true;
             // 
             // panel1
             // 
