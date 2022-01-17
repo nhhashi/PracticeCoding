@@ -58,9 +58,8 @@ namespace MediaPlayer.FileControllers
             ///個々のファイル名を取得する
             foreach (string str in files)
             {
-                fileNum++;
-
                 fileNames.Add(fileNum, str);
+                fileNum++;
             }
 
             return fileNames;

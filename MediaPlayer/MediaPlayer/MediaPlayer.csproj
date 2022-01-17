@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModel\DefineEnum.cs" />
     <Compile Include="FileControllers\mediaFileController.cs" />
     <Compile Include="MediaPlayerWindows\MediaPlayer.cs">
       <SubType>Form</SubType>

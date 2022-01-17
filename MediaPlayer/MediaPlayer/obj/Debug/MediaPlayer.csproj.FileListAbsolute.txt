@@ -10,3 +10,15 @@ C:\Users\G018C1233\source\repos\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.pd
 C:\Users\G018C1233\source\repos\MediaPlayer\MediaPlayer\obj\Debug\Interop.WMPLib.dll
 C:\Users\G018C1233\source\repos\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csproj.ResolveComReference.cache
 C:\Users\G018C1233\source\repos\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.MediaPlayer.resources
+C:\Users\G018C1233\Documents\practiceMusicPlayer\PracticeCoding\MediaPlayer\MediaPlayer\bin\Debug\MediaPlayer.exe.config
+C:\Users\G018C1233\Documents\practiceMusicPlayer\PracticeCoding\MediaPlayer\MediaPlayer\bin\Debug\MediaPlayer.exe
+C:\Users\G018C1233\Documents\practiceMusicPlayer\PracticeCoding\MediaPlayer\MediaPlayer\bin\Debug\MediaPlayer.pdb
+C:\Users\G018C1233\Documents\practiceMusicPlayer\PracticeCoding\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csprojAssemblyReference.cache
+C:\Users\G018C1233\Documents\practiceMusicPlayer\PracticeCoding\MediaPlayer\MediaPlayer\obj\Debug\Interop.WMPLib.dll
+C:\Users\G018C1233\Documents\practiceMusicPlayer\PracticeCoding\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csproj.ResolveComReference.cache
+C:\Users\G018C1233\Documents\practiceMusicPlayer\PracticeCoding\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.MediaPlayer.resources
+C:\Users\G018C1233\Documents\practiceMusicPlayer\PracticeCoding\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.Properties.Resources.resources
+C:\Users\G018C1233\Documents\practiceMusicPlayer\PracticeCoding\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csproj.GenerateResource.cache
+C:\Users\G018C1233\Documents\practiceMusicPlayer\PracticeCoding\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csproj.CoreCompileInputs.cache
+C:\Users\G018C1233\Documents\practiceMusicPlayer\PracticeCoding\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.exe
+C:\Users\G018C1233\Documents\practiceMusicPlayer\PracticeCoding\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.pdb
