@@ -43,6 +43,7 @@ namespace MediaPlayer
             // FileNameDisplayDataGrid
             // 
             this.FileNameDisplayDataGrid.AllowUserToAddRows = false;
+            this.FileNameDisplayDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.FileNameDisplayDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FileNameDisplayDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileName});
@@ -76,6 +77,7 @@ namespace MediaPlayer
             // 
             // PreviousButton
             // 
+            this.PreviousButton.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.PreviousButton.Location = new System.Drawing.Point(60, 52);
             this.PreviousButton.Name = "PreviousButton";
             this.PreviousButton.Size = new System.Drawing.Size(54, 32);
@@ -85,6 +87,7 @@ namespace MediaPlayer
             // 
             // NextButton
             // 
+            this.NextButton.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.NextButton.Location = new System.Drawing.Point(236, 52);
             this.NextButton.Name = "NextButton";
             this.NextButton.Size = new System.Drawing.Size(54, 32);
@@ -94,6 +97,7 @@ namespace MediaPlayer
             // 
             // PlayButton
             // 
+            this.PlayButton.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.PlayButton.Location = new System.Drawing.Point(148, 39);
             this.PlayButton.Name = "PlayButton";
             this.PlayButton.Size = new System.Drawing.Size(54, 45);

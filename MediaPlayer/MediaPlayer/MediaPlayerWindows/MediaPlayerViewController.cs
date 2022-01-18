@@ -36,11 +36,13 @@ namespace MediaPlayer.MediaPlayerWindows
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="mediaPlayer"></param>
+        /// <param name="mediaPlayer">[in]MediaPlayerインスタンス</param>
         public MediaPlayerViewController(MediaPlayer mediaPlayer)
         {
+            ///フォーr無の読み込み
             this._mediaPlayer = mediaPlayer;
 
+            ///メディアファイルの読み込み
             musicFileController = new mediaFileController();
 
             ///ファイルパスの取得をする
@@ -56,19 +58,21 @@ namespace MediaPlayer.MediaPlayerWindows
             ///パネル内のコントロールを全て取得する
             foreach (Control child in panel.Controls)
             {
-                ///MessageBox.Show(child.Name);
-
                 controls.Add(child);
             }
 
-            ///
-            _mediaPlayer.fileNameDisplayDataGrid.SelectionChanged += new EventHandler(dataGrid_SerectionChanged);
-
+            ///イベントハンドラー設定
+            ///データグリッド
+            _mediaPlayer.fileNameDisplayDataGrid.Click += new EventHandler(dataGrid_MouseUp);
             ///再生ボタン群
             controls[(int)mediaControls.PREVIOUS].Click += new EventHandler(PreviousButton_Click);　　//次ボタン
             controls[(int)mediaControls.NEXT].Click += new EventHandler(NextButton_Click);    //前ボタン
             controls[(int)mediaControls.PLAYSTOP].Click += new EventHandler(mediaPlayButton_Click);    //前ボタン
 
+            ///コントロールの表示設定
+            controls[(int)mediaControls.PREVIOUS].Text = "◀◀";
+            controls[(int)mediaControls.NEXT].Text = "▶▶";
+            controls[(int)mediaControls.PLAYSTOP].Text = "▶";
         }
 
         /// <summary>
@@ -83,7 +87,6 @@ namespace MediaPlayer.MediaPlayerWindows
             foreach (KeyValuePair<int, string> keyValue in files)
             {
                 i++;
-
                 string[] str = keyValue.Value.Split('\\');
                 eachFileName = str[str.Length - 1];
 
@@ -104,16 +107,14 @@ namespace MediaPlayer.MediaPlayerWindows
         }
 
         /// <summary>
-        /// 
+        /// データグリッドクリックイベント関数
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dataGrid_SerectionChanged(object sender, EventArgs e)
+        private void dataGrid_MouseUp(object sender, EventArgs e)
         {
             ///選択行の番号を取得する
             selectecMediaFileIndex = MediaPlayer.mediaPlayer.fileNameDisplayDataGrid.CurrentRow.Index;
-
-            ///MessageBox.Show("データグリッドの選択" + i + "行目です");
 
             ///選択ファイル名の表をする
             displaySelectedFileName(_mediaPlayer.fileNameDisplayDataGrid.Rows[selectecMediaFileIndex].Cells[0].Value.ToString());
@@ -126,6 +127,7 @@ namespace MediaPlayer.MediaPlayerWindows
         /// <param name="e"></param>
         private void mediaPlayButton_Click(object sender, EventArgs e)
         {
+            ///再生状態の判定をする
             if (playState == mediaPlayState.STOP)
             {
                 mediaPlay();
@@ -146,6 +148,9 @@ namespace MediaPlayer.MediaPlayerWindows
             player.URL = files[selectecMediaFileIndex];
             player.controls.play();
 
+            ///停止マークの表示をする
+            controls[(int)mediaControls.PLAYSTOP].Text = "▮▮";
+
             ///再生する
             playState = mediaPlayState.PLAY;
         }
@@ -160,6 +165,9 @@ namespace MediaPlayer.MediaPlayerWindows
             player.URL = files[selectecMediaFileIndex];
             player.controls.stop();
 
+            ///再生マークの表示をする
+            controls[(int)mediaControls.PLAYSTOP].Text = "▶";
+
             ///停止する
             playState = mediaPlayState.STOP;
         }
@@ -169,8 +177,6 @@ namespace MediaPlayer.MediaPlayerWindows
         /// </summary>
         private void NextButton_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("次");
-
             ///選択番号をカウントダウンする
             selectecMediaFileIndex++;
 
@@ -194,8 +200,6 @@ namespace MediaPlayer.MediaPlayerWindows
         /// </summary>
         private void PreviousButton_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("前");
-
             ///選択番号をカウントダウンする
             selectecMediaFileIndex--;
 
