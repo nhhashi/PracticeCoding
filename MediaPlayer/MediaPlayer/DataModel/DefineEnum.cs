@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MediaPlayer.DataModel
+﻿namespace MediaPlayer.DataModel
 {
     /// <summary>
     /// コントロールを管理するenum値
@@ -22,6 +16,7 @@ namespace MediaPlayer.DataModel
     public enum mediaPlayState
     {
         PLAY,
+        PAUSE,
         STOP
     }
 

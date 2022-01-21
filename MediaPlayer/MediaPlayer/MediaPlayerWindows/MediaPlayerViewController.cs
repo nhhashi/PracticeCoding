@@ -2,9 +2,6 @@
 using MediaPlayer.FileControllers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WMPLib;
 
@@ -31,7 +28,11 @@ namespace MediaPlayer.MediaPlayerWindows
         private int selectecMediaFileIndex = 0;
 
         /// 再生状態
-        mediaPlayState playState = mediaPlayState.STOP;
+        private mediaPlayState playState = mediaPlayState.STOP;
+
+        ///音楽プレイヤーインスタンス
+        private WindowsMediaPlayer player = new WindowsMediaPlayer();
+        private double mediaCurrentPos = 0;
 
         /// <summary>
         /// コンストラクタ
@@ -63,7 +64,7 @@ namespace MediaPlayer.MediaPlayerWindows
 
             ///イベントハンドラー設定
             ///データグリッド
-            _mediaPlayer.fileNameDisplayDataGrid.Click += new EventHandler(dataGrid_MouseUp);
+            _mediaPlayer.fileNameDisplayDataGrid.Click += new EventHandler(dataGrid_Click);
             ///再生ボタン群
             controls[(int)mediaControls.PREVIOUS].Click += new EventHandler(PreviousButton_Click);　　//次ボタン
             controls[(int)mediaControls.NEXT].Click += new EventHandler(NextButton_Click);    //前ボタン
@@ -73,6 +74,9 @@ namespace MediaPlayer.MediaPlayerWindows
             controls[(int)mediaControls.PREVIOUS].Text = "◀◀";
             controls[(int)mediaControls.NEXT].Text = "▶▶";
             controls[(int)mediaControls.PLAYSTOP].Text = "▶";
+
+            ///選択ファイル名の表をする
+            displaySelectedFileName(_mediaPlayer.fileNameDisplayDataGrid.Rows[selectecMediaFileIndex].Cells[0].Value.ToString());
         }
 
         /// <summary>
@@ -89,7 +93,6 @@ namespace MediaPlayer.MediaPlayerWindows
                 i++;
                 string[] str = keyValue.Value.Split('\\');
                 eachFileName = str[str.Length - 1];
-
                 mediaFileName.Add(eachFileName);
             }
         }
@@ -111,10 +114,17 @@ namespace MediaPlayer.MediaPlayerWindows
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dataGrid_MouseUp(object sender, EventArgs e)
+        private void dataGrid_Click(object sender, EventArgs e)
         {
             ///選択行の番号を取得する
             selectecMediaFileIndex = MediaPlayer.mediaPlayer.fileNameDisplayDataGrid.CurrentRow.Index;
+
+            ///再生・一時停止状態である場合
+            if (playState == mediaPlayState.PLAY || playState == mediaPlayState.PAUSE)
+            {
+                ///音楽の停止をする
+                mediaStop();
+            }
 
             ///選択ファイル名の表をする
             displaySelectedFileName(_mediaPlayer.fileNameDisplayDataGrid.Rows[selectecMediaFileIndex].Cells[0].Value.ToString());
@@ -128,13 +138,13 @@ namespace MediaPlayer.MediaPlayerWindows
         private void mediaPlayButton_Click(object sender, EventArgs e)
         {
             ///再生状態の判定をする
-            if (playState == mediaPlayState.STOP)
+            if (playState == mediaPlayState.STOP || playState == mediaPlayState.PAUSE)
             {
-                mediaPlay();
+                mediaPlay();  ///再生
             }
             else if (playState == mediaPlayState.PLAY)
             {
-                mediaStop();
+                mediaPause(); ///一時停止
             }
         }
 
@@ -144,8 +154,8 @@ namespace MediaPlayer.MediaPlayerWindows
         private void mediaPlay()
         {
             ///音楽の再生を実施する
-            WindowsMediaPlayer player = new WindowsMediaPlayer();
             player.URL = files[selectecMediaFileIndex];
+            player.controls.currentPosition = mediaCurrentPos;
             player.controls.play();
 
             ///停止マークの表示をする
@@ -158,11 +168,28 @@ namespace MediaPlayer.MediaPlayerWindows
         /// <summary>
         /// メディア停止関数
         /// </summary>
+        private void mediaPause()
+        {
+            ///音楽の停止を実施する
+            player.controls.pause();
+
+            ///再生中メディアの現在位置を取得する
+            mediaCurrentPos = player.controls.currentPosition;
+            
+            ///再生マークの表示をする
+            controls[(int)mediaControls.PLAYSTOP].Text = "▶";
+
+            ///停止する
+            playState = mediaPlayState.PAUSE;
+        }
+
+        /// <summary>
+        /// メディア停止関数
+        /// </summary>
         private void mediaStop()
         {
             ///音楽の停止を実施する
-            WindowsMediaPlayer player = new WindowsMediaPlayer();
-            player.URL = files[selectecMediaFileIndex];
+            mediaCurrentPos = 0;
             player.controls.stop();
 
             ///再生マークの表示をする
@@ -187,6 +214,13 @@ namespace MediaPlayer.MediaPlayerWindows
                 return;
             }
 
+            ///再生・一時停止状態である場合
+            if (playState == mediaPlayState.PLAY || playState == mediaPlayState.PAUSE)
+            {
+                ///音楽の停止をする
+                mediaStop();
+            }
+
             ///次ファイルのデータグリッドを選択する
             MediaPlayer.mediaPlayer.fileNameDisplayDataGrid.CurrentRow.Selected = false;
             MediaPlayer.mediaPlayer.fileNameDisplayDataGrid.Rows[selectecMediaFileIndex].Selected = true;
@@ -208,6 +242,13 @@ namespace MediaPlayer.MediaPlayerWindows
             {
                 selectecMediaFileIndex++;
                 return;
+            }
+
+            ///再生・一時停止状態である場合
+            if (playState == mediaPlayState.PLAY || playState == mediaPlayState.PAUSE)
+            {
+                ///音楽の停止をする
+                mediaStop();
             }
 
             ///前ファイルのデータグリッドを選択する

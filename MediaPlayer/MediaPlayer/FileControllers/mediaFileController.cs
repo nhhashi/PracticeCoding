@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MediaPlayer.FileControllers
 {
     class mediaFileController
     {
-        /// <summary>
         /// getter用のファイル一覧
-        /// </summary>
         private Dictionary<int, string> files = new Dictionary<int, string>();
 
-        /// <summary>
         /// ファイル一覧の保持変数
-        /// </summary>
         private Dictionary<int, string> fileNames = new Dictionary<int, string>();
 
         /// <summary>
