@@ -5,14 +5,10 @@ namespace MediaPlayer
 {
     public partial class MediaPlayer : Form
     {
-        /// <summary>
-        /// 
-        /// </summary>
+        /// MediaPlayerインスタンス
         public static MediaPlayer mediaPlayer;
 
-        /// <summary>
         /// コントロール群
-        /// </summary>
         public DataGridView fileNameDisplayDataGrid;     ///表示用データグリッド
         public Label selectedFileNameLabel;                          ///ラベル
 
@@ -23,7 +19,6 @@ namespace MediaPlayer
         {
             InitializeComponent();
 
-            ///
             mediaPlayer = this;
 
             ///コントロールを格納する
