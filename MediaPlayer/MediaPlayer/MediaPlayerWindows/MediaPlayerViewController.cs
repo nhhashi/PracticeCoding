@@ -262,7 +262,7 @@ namespace MediaPlayer.MediaPlayerWindows
         /// <summary>
         /// 選択ファイル名を表示関数
         /// </summary>
-        /// <param name="selectedFfileName">[in]</param>
+        /// <param name="selectedFfileName">[in]選択したセルの値</param>
         private void displaySelectedFileName(string selectedFfileName)
         {
             ///ファイル名の表示をする
